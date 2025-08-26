@@ -94,20 +94,22 @@ if page == "Overview":
     st.header("📈 Market Overview")
     
     # Key metrics
-    current_price = crypto_data['Close'].iloc[-1]
-    price_change = crypto_data['Close'].iloc[-1] - crypto_data['Close'].iloc[-24]
-    price_change_pct = (price_change / crypto_data['Close'].iloc[-24]) * 100
+    current_price = float(crypto_data['Close'].iloc[-1])
+    price_change = float(crypto_data['Close'].iloc[-1] - crypto_data['Close'].iloc[-24])
+    price_change_pct = (price_change / float(crypto_data['Close'].iloc[-24])) * 100
     
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.metric("Current BTC Price", f"${current_price:,.2f}", f"{price_change_pct:+.2f}%")
     with col2:
-        st.metric("24h Volume", f"{crypto_data['Volume'].iloc[-24:].mean():,.0f}")
+        volume_avg = float(crypto_data['Volume'].iloc[-24:].mean())
+        st.metric("24h Volume", f"{volume_avg:,.0f}")
     with col3:
-        st.metric("RSI", f"{crypto_data['RSI'].iloc[-1]:.1f}")
+        rsi_current = float(crypto_data['RSI'].iloc[-1])
+        st.metric("RSI", f"{rsi_current:.1f}")
     with col4:
-        volatility = crypto_data['Close'].pct_change().rolling(24).std().iloc[-1] * 100
+        volatility = float(crypto_data['Close'].pct_change().rolling(24).std().iloc[-1]) * 100
         st.metric("24h Volatility", f"{volatility:.2f}%")
     
     # Price chart
@@ -163,7 +165,7 @@ elif page == "Live Analysis":
     
     with col2:
         st.subheader("😊 Market Sentiment")
-        sentiment = crypto_data['Sentiment'].iloc[-1]
+        sentiment = float(crypto_data['Sentiment'].iloc[-1])
         if sentiment > 0.2:
             st.success("😊 Positive Sentiment")
         elif sentiment < -0.2:
