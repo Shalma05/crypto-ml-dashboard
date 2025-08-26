@@ -271,9 +271,9 @@ elif page == "About":
     - **Deployment**: Streamlit Community Cloud
     
     ---
-    **Created by**: [Your Name]  
-    **Contact**: [Your Email]  
-    **GitHub**: [Your GitHub URL]
+    **Created by**: Shalma W M  
+    **Contact**: shalmawilfred02@gmail.com  
+    **GitHub**: https://github.com/Shalma05
     
     🎉 **This project showcases end-to-end data science skills from data collection to deployment!**
     """)
